@@ -1,5 +1,6 @@
 const LocalStrategy = require('passport-local').Strategy
 const mongoose = require('mongoose')
+const passport = require('passport');
 const User = require('../models/User')
 
 module.exports = function (passport) {
@@ -27,7 +28,12 @@ module.exports = function (passport) {
     done(null, user.id)
   })
 
-  passport.deserializeUser((id, done) => {
-    User.findById(id, (err, user) => done(err, user))
+  passport.deserializeUser(async (id, done) => {
+    try {
+      const user = await User.findById(id); // Use async/await instead of a callback
+      done(null, user);
+    } catch (err) {
+      done(err, null);
+    }
   })
 }
