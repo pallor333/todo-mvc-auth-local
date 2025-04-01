@@ -23,7 +23,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(logger('dev'))
 // Sessions
-app.use(
+app.use( //verifies the login
     session({
       secret: 'keyboard cat',
       resave: false,
@@ -37,7 +37,12 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 app.use(flash())
-  
+// Pass Flash Messages to All Templates
+app.use((req, res, next) => {
+  res.locals.messages = req.flash();
+  next();
+});
+
 app.use('/', mainRoutes)
 app.use('/todos', todoRoutes)
  

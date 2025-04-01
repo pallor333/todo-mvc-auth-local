@@ -1,3 +1,4 @@
+/* original
 h1{
     color: red;
 }
@@ -7,4 +8,133 @@ h1{
 }
 .not{
     text-decoration: underline;
+} */
+
+/* General Page Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Full viewport height */
+    text-align: center; /* Center text inside elements */
+
+}
+
+/* Signup Form Container */
+.signup-form {
+    background-color: #fff;
+    padding: 20px 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Space between form elements */
+    text-align: center;
+}
+
+/* Submit Button */
+.btn {
+    background-color: #ff6347;
+    color: white;
+    border: none;
+    font-size: 1rem;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    text-decoration: none;
+}
+.btn:hover {
+    background-color: #ff4500; /* Darker shade on hover */
+}
+/* Error Messages */
+.alert {
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    background-color: #f8d7da; /* Light red background */
+    color: #721c24; /* Dark red text */
+    border: 1px solid #f5c6cb; /* Light red border */
+  }
+/* Header Styling */
+h1 {
+    color: #ff6347; 
+    text-align: center;
+    margin: 20px 0;
+    font-size: 2.5rem;
+}
+
+/* Todo List Styling */
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px auto;
+    max-width: 600px;
+}
+
+li {
+    background: #fff;
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Completed Todo Styling */
+.completed {
+    text-decoration: line-through;
+    color: gray;
+}
+
+/* Not Completed Todo Styling */
+.not {
+    text-decoration: underline;
+    color: #333;
+}
+
+/* Center and style the todo input form */
+form, h2, .index-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px auto;
+    max-width: 400px;
+}
+/* form input[type="text"]  */
+form input {
+    width: 100%; /* Make the input field smaller */
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+/* Position the logout button at the bottom-right corner */
+.logout-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: 20px;
+    color: #777;
+    font-size: 0.9rem;
 }

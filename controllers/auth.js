@@ -17,8 +17,12 @@ const User = require('../models/User')
     if (validator.isEmpty(req.body.password)) validationErrors.push({ msg: 'Password cannot be blank.' })
   
     if (validationErrors.length) {
-      req.flash('errors', validationErrors)
-      return res.redirect('/login')
+      // req.flash('errors', validationErrors)
+      // return res.redirect('/login')
+      return res.render('login', {
+        title: 'Create Account',
+        messages: { errors: validationErrors },
+      });
     }
     req.body.email = validator.normalizeEmail(req.body.email, { gmail_remove_dots: false })
   
@@ -51,20 +55,30 @@ const User = require('../models/User')
     if (req.user) {
       return res.redirect('/todos')
     }
+    //console.log("Flash Messages in GET /signup:", req.flash('errors')); // Debugging
     res.render('signup', {
       title: 'Create Account'
     })
   }
   
   exports.postSignup = async (req, res, next) => {
+    //console.log(req.body); // Debugging: Log the form data
+
     const validationErrors = [];
     if (!validator.isEmail(req.body.email)) validationErrors.push({ msg: 'Please enter a valid email address.' });
     if (!validator.isLength(req.body.password, { min: 8 })) validationErrors.push({ msg: 'Password must be at least 8 characters long' });
     if (req.body.password !== req.body.confirmPassword) validationErrors.push({ msg: 'Passwords do not match' });
-  
+    
     if (validationErrors.length) {
-      req.flash('errors', validationErrors);
-      return res.redirect('../signup');
+      //console.log("validation errors: ", validationErrors) //debug
+      //req.flash('errors', validationErrors); // Pass errors to flash
+      //console.log("Flash Errors:", req.flash('errors')); // Debugging
+      //req.flash('errors', validationErrors);
+      //return res.redirect('../signup'); //old 
+      return res.render('signup', {
+        title: 'Create Account',
+        messages: { errors: validationErrors },
+      });
     }
     req.body.email = validator.normalizeEmail(req.body.email, { gmail_remove_dots: false });
   
@@ -77,13 +91,13 @@ const User = require('../models/User')
         req.flash('errors', { msg: 'Account with that email address or username already exists.' });
         return res.redirect('../signup');
       }
-  
+      
       const user = new User({
         userName: req.body.userName,
         email: req.body.email,
         password: req.body.password,
       });
-  
+      
       await user.save();
       req.logIn(user, (err) => {
         if (err) {
@@ -94,4 +108,5 @@ const User = require('../models/User')
     } catch (err) {
       return next(err);
     }
+    
   };
