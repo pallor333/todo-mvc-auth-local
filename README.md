@@ -43,7 +43,7 @@ bcrypt, connect-mongo, dotenv, ejs, express, express-flash, express-session, mon
  
  Have fun testing and improving it! 😎
 
-###### Changes made
+# Changes made
 - Fixed various outdated modules and code
 - Added CSS for index, login, signup and todo.
 - Changed how error messages display and added a new JS file to handle hiding msgs
